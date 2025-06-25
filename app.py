@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, ,send_file
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__)
 
 @app.route('/')
 def serve_frontend():
