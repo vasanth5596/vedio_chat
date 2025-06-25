@@ -4,7 +4,7 @@ app = Flask(__name__, static_folder='static')
 
 @app.route('/')
 def serve_frontend():
-    return send_from_directory(app.static_folder, 'index.html')
+    return send_file('index.html') 
 
 @app.route('/calculate', methods=['POST'])
 def calculate():
