@@ -8,6 +8,6 @@ docker tag vedio_chat vasanth5596/vedio_chat:latest
 docker push vasanth5596/vedio_chat:latest
 
 # Run the container (for testing)
-docker run -d -p 80:80 --name vedio_chat_container vasanth5596/vedio_chat:latest
+docker run -d -p 80:5000 --name vedio_chat_container vasanth5596/vedio_chat:latest
 
 echo "Deployment completed on Docker Hub and container running locally."
