@@ -38,4 +38,4 @@ jobs:
           docker push ${{ secrets.DOCKER_USERNAME }}/vedio_chat:latest
 
       - name: Deploy the application
-        run: bash deploy.sh          
+        run: bash deploy.sh               
