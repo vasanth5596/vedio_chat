@@ -1,11 +1,14 @@
 name: CI/CD Pipeline
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -20,17 +23,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run app test (placeholder)
-        run: echo "No tests configured"
+      - name: Run tests (placeholder)
+        run: echo "Add your test command here"
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build Docker image
         run: |
-          docker build -t vedio_chat .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/vedio_chat:latest .
 
-      - name: Push Docker image (if configured)
-        # Add Docker Hub/ECR push commands here
-        run: echo "Skipping push step (configure Docker Hub for push)"
-
-      - name: Deploy
+      - name: Push Docker image to Docker Hub
         run: |
-          bash deploy.sh
+          docker push ${{ secrets.DOCKER_USERNAME }}/vedio_chat:latest
+
+      - name: Deploy the application
+        run: bash deploy.sh
