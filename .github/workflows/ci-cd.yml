@@ -44,4 +44,9 @@ jobs:
         run: docker logout ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
       - name: Deploy the application
-        run: bash deploy.sh
+        env:
+          KEY: ${{ secrets.SSH_KEY }}
+        run: |
+          echo "${KEY}" > your-key.pem
+          chmod 600 your-key.pem
+          bash deploy.sh
